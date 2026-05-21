@@ -23,12 +23,31 @@ h6 {
   letter-spacing: 1px;
 }
 
+ol,
+li {
+  list-style-type: none;
+}
+
 /* Header */
 
 .header-navbar {
   background-color: #2b241c;
   color: #f4efe3;
   padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-back-to-home {
+  text-decoration: none;
+  color: #f4efe3;
+  padding-right: 3rem;
+  font-size: 2rem;
+}
+
+.header-back-to-home:hover {
+  color: #e7d7b8;
 }
 
 /* HomePage */
@@ -110,16 +129,124 @@ h6 {
 .monster-container {
   padding: 2rem;
   display: flex;
-  gap: 4rem;
+  justify-content: center;
+  gap: 1rem;
+  border: 1px solid #2b241c;
+  border-radius: 10px;
+  margin-top: 2rem;
+  box-shadow:
+    0 10px 20px rgba(43, 36, 28, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  background-image: url(../libro.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.monster-image-container {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .monster-image {
-  height: 500px;
+  width: 80%;
+  aspect-ratio: 1/1;
   border-radius: 10px;
   border: 1px solid #2b241c;
   box-shadow:
     0 10px 20px rgba(43, 36, 28, 0.25),
     inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+.monster-button-container {
+  flex-basis: 10%;
+}
+
+.monster-nav-button {
+  font-size: 4rem;
+  text-decoration: none;
+  color: #3b2f22;
+  transition: 0.3s;
+}
+
+.monster-nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.monster-text-container {
+  flex-basis: 50%;
+  border: 1px solid #2b241c;
+  border-radius: 10px;
+  box-shadow:
+    0 10px 20px rgba(43, 36, 28, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  padding: 1rem 2rem;
+}
+
+.monster-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.monster-info-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.monster-info-hover {
+  position: relative;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.monster-hover-description {
+  position: absolute;
+  left: 130%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 400px;
+  padding: 0.8rem;
+  border-radius: 10px;
+  background: #2b241c;
+  color: #f4efe3;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 100;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.monster-info-hover:hover .monster-hover-description {
+  opacity: 1;
+  visibility: visible;
+  left: 150%;
+}
+
+.monster-info-container {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  border-bottom: 1px solid #2b241c;
+  padding-bottom: 1rem;
+}
+
+.monster-list {
+  padding: 0;
+  margin: 0;
+}
+
+.monster-info {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+.monster-description {
+  font-size: 1.2rem;
 }
 
 /* Loader */
@@ -131,14 +258,13 @@ h6 {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 100;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   .spinner-border {
     width: 200px;
     height: 200px;
     font-size: 2rem;
+    color: #2b241c;
   }
 }

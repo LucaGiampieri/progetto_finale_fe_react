@@ -28,9 +28,7 @@ function HomePage() {
         console.log("ERROR:", err);
       })
       .finally(() => {
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 100);
+        setIsLoading(false);
       });
   }
 

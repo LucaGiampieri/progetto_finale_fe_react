@@ -13,6 +13,8 @@ function MonsterPage() {
 
   const [monster, setMonster] = useState();
 
+  const [monsters, setMonsters] = useState([]);
+
   function fetchMonster() {
     setIsLoading(true);
 
@@ -30,37 +32,105 @@ function MonsterPage() {
         console.log("ERROR:", err);
       })
       .finally(() => {
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 100);
+        setIsLoading(false);
       });
   }
 
-  useEffect(fetchMonster, []);
+  function fetchMonsters() {
+    axios
+      .get("http://127.0.0.1:8000/api/monsters")
+      .then((res) => {
+        setMonsters(res.data.data);
+      })
+      .catch((err) => {
+        console.log("ERROR:", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
+  useEffect(() => {
+    fetchMonster();
+    fetchMonsters();
+  }, [id]);
+
+  const currentIndex = monsters.findIndex(
+    (monster) => monster.id === Number(id),
+  );
+
+  const prevMonster = monsters[currentIndex - 1];
+
+  const nextMonster = monsters[currentIndex + 1];
 
   if (!monster) return null;
 
   return (
     <>
-      <div className="monster-container">
-        <img
-          className="monster-image"
-          src={monster.image_url}
-          alt={monster.name}
-        />
+      <div className="monster-container ">
+        <div className="monster-image-container">
+          <div className="monster-button-container">
+            {prevMonster && (
+              <Link
+                className="monster-nav-button"
+                to={`/monsters/${prevMonster.id}`}
+              >
+                <i class="bi bi-caret-left-fill"></i>
+              </Link>
+            )}
+          </div>
+          <img
+            className="monster-image"
+            src={monster.image_url}
+            alt={monster.name}
+          />
+          <div className="monster-button-container">
+            {nextMonster && (
+              <Link
+                className="monster-nav-button"
+                to={`/monsters/${nextMonster.id}`}
+              >
+                <i class="bi bi-caret-right-fill"></i>
+              </Link>
+            )}
+          </div>
+        </div>
         <div className="monster-text-container">
-          <h2>{monster.name}</h2>
-          {monster.size && <h4>Taglia: {monster.size.name}</h4>}
-          {monster.size && <p>{monster.size.description}</p>}
-          {monster.types &&
-            monster.types.map((type) => (
-              <div key={type.id}>
-                <h4>Tipologia: {type.name}</h4>
-                <p>{type.description}</p>
+          <h2 className="monster-name">{monster.name}</h2>
+
+          {monster.size && (
+            <div className="monster-info-container">
+              <h3 className="monster-info-title">Taglia:</h3>
+              <div className="monster-info-hover">
+                <p className="monster-info"> {monster.size.name}</p>
+
+                <p className="monster-hover-description">
+                  {monster.size.description}
+                </p>
               </div>
-            ))}
-          <h3>Descrizione:</h3>
-          <p>{monster.description}</p>
+            </div>
+          )}
+
+          <div className="monster-info-container">
+            {monster.types && (
+              <h3 className="monster-info-title">Tipologia:</h3>
+            )}
+            <ul className="monster-list">
+              {monster.types &&
+                monster.types.map((type) => (
+                  <div className="monster-info-hover" key={type.id}>
+                    <li className="monster-info">{type.name}</li>
+
+                    <p className="monster-hover-description">
+                      {type.description}
+                    </p>
+                  </div>
+                ))}
+            </ul>
+          </div>
+
+          <h3 className="monster-info-title">Descrizione:</h3>
+          <p className="monster-description">{monster.description}</p>
         </div>
       </div>
     </>
