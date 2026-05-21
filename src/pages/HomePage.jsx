@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useGlobal } from "../context/GlobalContext";
 
 function HomePage() {
-  let endpoint = "http://127.0.0.1:8000/api/monsters";
+  let url = "http://127.0.0.1:8000/api/monsters";
 
   const { setIsLoading } = useGlobal();
 
@@ -13,15 +13,27 @@ function HomePage() {
 
   const [order, setOrder] = useState("");
 
+  const [search, setSearch] = useState("");
+
   function fetchMonsters() {
     setIsLoading(true);
 
+    const params = [];
+
     if (order) {
-      endpoint += `?order=${order}`;
+      params.push(`order=${order}`);
+    }
+
+    if (search) {
+      params.push(`search=${search}`);
+    }
+
+    if (params.length > 0) {
+      url += "?" + params.join("&");
     }
 
     axios
-      .get(endpoint)
+      .get(url)
       .then((res) => {
         const data = res.data.data.map((monster) => ({
           ...monster,
@@ -38,11 +50,17 @@ function HomePage() {
       });
   }
 
-  useEffect(fetchMonsters, [order]);
+  useEffect(fetchMonsters, [order, search]);
 
   return (
     <>
       <div className="home-select-container">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Cerca mostro..."
+        />
         <label htmlFor="order">Ordine</label>
         <select
           id="order"

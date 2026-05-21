@@ -68,7 +68,7 @@ li {
 }
 
 .home-card {
-  flex: 1 1 calc(33.333% - 2rem);
+  flex-basis: calc((100% - 6rem) / 3);
   border: 1px solid #3b2f22;
   border-radius: 12px;
   background: linear-gradient(to bottom, #f5ecd9, #e7d7b8);
