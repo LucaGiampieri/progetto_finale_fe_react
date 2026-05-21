@@ -4,6 +4,7 @@ const GlobalContext = createContext();
 
 function GlobalProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
+
   return (
     <GlobalContext.Provider value={{ isLoading, setIsLoading }}>
       {children}
