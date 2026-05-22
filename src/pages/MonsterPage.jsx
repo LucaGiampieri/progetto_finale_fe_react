@@ -75,7 +75,7 @@ function MonsterPage() {
                 className="monster-nav-button"
                 to={`/monsters/${prevMonster.id}`}
               >
-                <i class="bi bi-caret-left-fill"></i>
+                <i className="bi bi-caret-left-fill"></i>
               </Link>
             )}
           </div>
@@ -90,7 +90,7 @@ function MonsterPage() {
                 className="monster-nav-button"
                 to={`/monsters/${nextMonster.id}`}
               >
-                <i class="bi bi-caret-right-fill"></i>
+                <i className="bi bi-caret-right-fill"></i>
               </Link>
             )}
           </div>

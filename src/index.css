@@ -62,8 +62,13 @@ li {
 
 .home-select-container {
   display: flex;
-  justify-content: end;
+  justify-content: center;
   margin-top: 1rem;
+  gap: 1rem;
+}
+
+.selcet-container {
+  display: flex;
   gap: 0.5rem;
 }
 
