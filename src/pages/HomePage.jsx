@@ -105,75 +105,86 @@ function HomePage() {
 
   return (
     <>
-      <div className="home-select-container">
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Cerca mostro..."
-        />
+      <div className="home-container-backgound">
+        <div className="container">
+          <div className="home-select-container">
+            <div className="selcet-container">
+              <label htmlFor="search">Cerca</label>
+              <input
+                id="search"
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Cerca mostro..."
+              />
+            </div>
 
-        <div className="selcet-container">
-          <label htmlFor="order">Ordine</label>
-          <select
-            id="order"
-            value={order}
-            onChange={(e) => setOrder(e.target.value)}
-          >
-            <option value="">Default</option>
-            <option value="asc">A → Z</option>
-            <option value="desc">Z → A</option>
-          </select>
-        </div>
+            <div className="selcet-container">
+              <label htmlFor="types">Tipologia</label>
+              <select
+                id="types"
+                value={selectedType}
+                onChange={(e) => setSelectedType(e.target.value)}
+              >
+                <option value="">Tutte</option>
+                {types.map((type) => (
+                  <option key={type.id} value={type.id}>
+                    {type.name}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-        <div className="selcet-container">
-          <label htmlFor="types">Tipologia</label>
-          <select
-            id="types"
-            value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)}
-          >
-            <option value="">Tutte</option>
-            {types.map((type) => (
-              <option key={type.id} value={type.id}>
-                {type.name}
-              </option>
-            ))}
-          </select>
-        </div>
+            <div className="selcet-container">
+              <label htmlFor="sizes">Taglia</label>
+              <select
+                id="sizes"
+                value={selectedSize}
+                onChange={(e) => setSelectedSize(e.target.value)}
+              >
+                <option value="">Tutte</option>
+                {sizes.map((size) => (
+                  <option key={size.id} value={size.id}>
+                    {size.name}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-        <div className="selcet-container">
-          <label htmlFor="sizes">Taglia</label>
-          <select
-            id="sizes"
-            value={selectedSize}
-            onChange={(e) => setSelectedSize(e.target.value)}
-          >
-            <option value="">Tutte</option>
-            {sizes.map((size) => (
-              <option key={size.id} value={size.id}>
-                {size.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      <div className="home-container">
-        {monsters.map((monster) => (
-          <div className="home-card" key={monster.id}>
-            <h5>
-              <Link className="home-card-title" to={`monsters/${monster.id}`}>
-                {monster.name}
-              </Link>
-            </h5>
-            <img
-              className="home-card-image"
-              src={monster.image_url}
-              alt={monster.name}
-            />
+            <div className="selcet-container">
+              <label htmlFor="order">Ordine</label>
+              <select
+                id="order"
+                value={order}
+                onChange={(e) => setOrder(e.target.value)}
+              >
+                <option value="">Default</option>
+                <option value="asc">A → Z</option>
+                <option value="desc">Z → A</option>
+              </select>
+            </div>
           </div>
-        ))}
+
+          <div className="home-container">
+            {monsters.map((monster) => (
+              <div className="home-card" key={monster.id}>
+                <h5>
+                  <Link
+                    className="home-card-title"
+                    to={`monsters/${monster.id}`}
+                  >
+                    {monster.name}
+                  </Link>
+                </h5>
+                <img
+                  className="home-card-image"
+                  src={monster.image_url}
+                  alt={monster.name}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );

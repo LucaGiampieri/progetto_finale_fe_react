@@ -52,6 +52,10 @@ li {
 
 /* HomePage */
 
+.home-container-backgound {
+  background-image: url(../public/pergamena.jpg);
+}
+
 .home-container {
   display: flex;
   flex-wrap: wrap;
@@ -63,13 +67,16 @@ li {
 .home-select-container {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  padding-top: 1rem;
   gap: 1rem;
+  font-weight: bold;
 }
 
 .selcet-container {
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .home-card {

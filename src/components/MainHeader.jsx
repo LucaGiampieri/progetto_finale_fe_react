@@ -10,7 +10,7 @@ function MainHeader() {
 
       {location.pathname.includes("/monsters/") && (
         <Link className="header-back-to-home" to="/">
-          Torna alla Home
+          Home
         </Link>
       )}
     </nav>
