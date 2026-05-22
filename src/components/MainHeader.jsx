@@ -5,15 +5,17 @@ function MainHeader() {
   const location = useLocation();
 
   return (
-    <nav className="header-navbar ">
-      <h1>Il bestiario digitale</h1>
+    <header>
+      <nav className="header-navbar ">
+        <h1>Il bestiario digitale</h1>
 
-      {location.pathname.includes("/monsters/") && (
-        <Link className="header-back-to-home" to="/">
-          Home
-        </Link>
-      )}
-    </nav>
+        {location.pathname.includes("/monsters/") && (
+          <Link className="header-back-to-home" to="/">
+            Home
+          </Link>
+        )}
+      </nav>
+    </header>
   );
 }
 

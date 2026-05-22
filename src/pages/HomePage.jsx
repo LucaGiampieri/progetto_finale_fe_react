@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import MonsterCard from "../components/MonsterCard";
+
 import { useGlobal } from "../context/GlobalContext";
 
 function HomePage() {
@@ -101,8 +103,6 @@ function HomePage() {
     featchSizes();
   }, []);
 
-  console.log(types, sizes);
-
   return (
     <>
       <div className="home-container-backgound">
@@ -167,21 +167,12 @@ function HomePage() {
 
           <div className="home-container">
             {monsters.map((monster) => (
-              <div className="home-card" key={monster.id}>
-                <h5>
-                  <Link
-                    className="home-card-title"
-                    to={`monsters/${monster.id}`}
-                  >
-                    {monster.name}
-                  </Link>
-                </h5>
-                <img
-                  className="home-card-image"
-                  src={monster.image_url}
-                  alt={monster.name}
-                />
-              </div>
+              <MonsterCard
+                key={monster.id}
+                id={monster.id}
+                name={monster.name}
+                image_url={monster.image_url}
+              />
             ))}
           </div>
         </div>
