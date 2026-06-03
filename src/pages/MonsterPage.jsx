@@ -112,23 +112,25 @@ function MonsterPage() {
               </div>
             )}
 
-            <div className="monster-info-container">
-              {monster.types && (
-                <h3 className="monster-info-title">Tipologia:</h3>
-              )}
-              <ul className="monster-list">
-                {monster.types &&
-                  monster.types.map((type) => (
-                    <div className="monster-info-hover" key={type.id}>
-                      <li className="monster-info">{type.name}</li>
+            {monster.types?.length > 0 && (
+              <>
+                <div className="monster-info-container">
+                  <h3 className="monster-info-title">Tipologia:</h3>
 
-                      <p className="monster-hover-description">
-                        {type.description}
-                      </p>
-                    </div>
-                  ))}
-              </ul>
-            </div>
+                  <ul className="monster-list">
+                    {monster.types.map((type) => (
+                      <div className="monster-info-hover" key={type.id}>
+                        <li className="monster-info">{type.name}</li>
+
+                        <p className="monster-hover-description">
+                          {type.description}
+                        </p>
+                      </div>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            )}
 
             <h3 className="monster-info-title">Descrizione:</h3>
             <p className="monster-description">{monster.description}</p>
